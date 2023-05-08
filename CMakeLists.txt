@@ -10,17 +10,25 @@ option(cublas_test "test cublas" OFF)
 option(cubsparse_test "test cusparse" OFF)
 option(cubsparse_inp "test cusparse_inp" ON)
 
+set(
+    SRC_FILES
+    Utilities.cuh
+    Utilities.cu
+)
+
 if(cublas_test)
-    set(SRC_FILES cublas_test.cu)
+    list(APPEND SRC_FILES cublas_test.cu)
 endif()
 
 if(cubsparse_test)
-    set(SRC_FILES cusparse_test.cu)
+    list(APPEND SRC_FILES cusparse_test.cu)
 endif()
 
 if(cubsparse_inp)
-    set(SRC_FILES cusparse_inp.cu)
+    list(APPEND SRC_FILES cusparse_inp.cu)
 endif()
+
+message(STATUS "SRC_FILES: ${SRC_FILES}")
 
 add_executable(
     conjugate_gradient
